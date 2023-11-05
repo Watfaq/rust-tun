@@ -123,9 +123,11 @@ impl Device {
             let ctl = Fd::new(libc::socket(AF_INET, SOCK_DGRAM, 0))?;
 
             Device {
-                name: CStr::from_ptr(name.as_ptr() as *const c_char)
-                    .to_string_lossy()
-                    .into(),
+                name: Some(
+                    CStr::from_ptr(name.as_ptr() as *const c_char)
+                        .to_string_lossy()
+                        .into(),
+                ),
                 queue: Queue { tun },
                 ctl: Some(ctl),
             }
