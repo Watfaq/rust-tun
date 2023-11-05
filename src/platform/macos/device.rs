@@ -229,7 +229,7 @@ impl D for Device {
     type Queue = Queue;
 
     fn name(&self) -> Result<String> {
-        Ok(self.name.unwrap_or_default().clone())
+        Ok(self.name.clone().unwrap_or_default())
     }
 
     // XXX: Cannot set interface name on Darwin.
