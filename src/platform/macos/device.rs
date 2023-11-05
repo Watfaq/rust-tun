@@ -226,12 +226,8 @@ impl Write for Device {
 impl D for Device {
     type Queue = Queue;
 
-    fn name(&self) -> &str {
-        if let Some(name) = self.name.as_ref() {
-            name
-        } else {
-            ""
-        }
+    fn name(&self) -> Result<String> {
+        Ok(self.name.unwrap_or_default().clone())
     }
 
     // XXX: Cannot set interface name on Darwin.
